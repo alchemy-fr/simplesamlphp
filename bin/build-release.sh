@@ -16,7 +16,7 @@ if [ -z "$VERSION" ]; then
 fi
 
 if [ -z "$REPO" ]; then
-    REPOPATH="https://github.com/jygaulier/simplesamlphp-azure"
+    REPOPATH="https://github.com/alchemy-fr/simplesamlphp-azure"
 fi
 
 TAG="v$VERSION"
@@ -43,12 +43,13 @@ if [ -f "$TARGET/composer.json" ]; then
     fi
 
     # Install dependencies (without vcs history or dev tools)
-    php "$TARGET/composer.phar" install --no-dev --prefer-dist -o -d "$TARGET"
+    php "$TARGET/composer.phar" install --no-dev --prefer-dist --ignore-platform-reqs -o -d "$TARGET"
 fi
 
 mkdir -p "$TARGET/config" "$TARGET/metadata" "$TARGET/cert" "$TARGET/log"
 cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
 cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
+cp -rv "$TARGET/cert-templates/"* "$TARGET/cert/"
 rm -rf "$TARGET/.git"
 rm "$TARGET/.coveralls.yml"
 rm "$TARGET/.travis.yml"
