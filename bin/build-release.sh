@@ -16,11 +16,11 @@ if [ -z "$VERSION" ]; then
 fi
 
 if [ -z "$REPO" ]; then
-    REPOPATH="https://github.com/simplesamlphp/simplesamlphp.git"
+    REPOPATH="https://github.com/jygaulier/simplesamlphp-azure"
 fi
 
 TAG="v$VERSION"
-TARGET="simplesamlphp-$VERSION"
+TARGET="simplesamlphp-azure-$VERSION"
 
 cd /tmp
 
@@ -58,8 +58,8 @@ rm "$TARGET/.gitattributes"
 rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
 rm "$TARGET/.editorconfig"
 rm "$TARGET/composer.phar"
-tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
-rm -rf "$TARGET"
+tar -cvzf "$TARGET.tar.gz" "$TARGET"
+# rm -rf "$TARGET"
 
 echo "Created: /tmp/$TARGET.tar.gz"
 
