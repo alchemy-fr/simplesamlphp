@@ -69,7 +69,7 @@ $config = array (
 	 * metadata listing and diagnostics pages.
 	 * You can also put a hash here; run "bin/pwgen.php" to generate one.
 	 */
-	'auth.adminpassword'		=> 'alchemy',
+	'auth.adminpassword'		=> '123',
 	'admin.protectindexpage'	=> false,
 	'admin.protectmetadata'		=> false,
 
@@ -81,7 +81,7 @@ $config = array (
 	 * A possible way to generate a random salt is by running the following command from a unix shell:
 	 * tr -c -d '0123456789abcdefghijklmnopqrstuvwxyz' </dev/urandom | dd bs=32 count=1 2>/dev/null;echo
 	 */
-	'secretsalt' => 'zehfzf87421upuilkuik649',
+	'secretsalt' => 'defaultsecretsalt',
 	
 	/*
 	 * Some information about the technical persons running this installation.
@@ -89,7 +89,7 @@ $config = array (
 	 * also as the technical contact in generated metadata.
 	 */
 	'technicalcontact_name'     => 'Administrator',
-	'technicalcontact_email'    => 'support@alchemy.fr',
+	'technicalcontact_email'    => 'na@example.org',
 
 	/*
 	 * The timezone of the server. This option should be set to the timezone you want
