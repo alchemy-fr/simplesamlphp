@@ -1,49 +1,91 @@
 <?php
 /**
- * SAML 2.0 remote IdP metadata for SimpleSAMLphp.
+ * SAML 2.0 remote IdP metadata for simpleSAMLphp.
  *
  * Remember to remove the IdPs you don't use from this file.
  *
- * See: https://simplesamlphp.org/docs/stable/simplesamlphp-reference-idp-remote
+ * See: https://rnd.feide.no/content/idp-remote-metadata-reference
  */
-$metadata['https://sts.windows.net/b6d71031-4e51-4951-affa-dda02674f57f/'] = array (
-	'entityid' => 'https://sts.windows.net/b6d71031-4e51-4951-affa-dda02674f57f/',
-	'contacts' =>
-		array (
-		),
-	'metadata-set' => 'saml20-idp-remote',
-	'SingleSignOnService' =>
-		array (
-			0 =>
-				array (
-					'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-					'Location' => 'https://login.microsoftonline.com/b6d71031-4e51-4951-affa-dda02674f57f/saml2',
-				),
-			1 =>
-				array (
-					'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-POST',
-					'Location' => 'https://login.microsoftonline.com/b6d71031-4e51-4951-affa-dda02674f57f/saml2',
-				),
-		),
-	'SingleLogoutService' =>
-		array (
-			0 =>
-				array (
-					'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-					'Location' => 'https://login.microsoftonline.com/b6d71031-4e51-4951-affa-dda02674f57f/saml2',
-				),
-		),
-	'ArtifactResolutionService' =>
-		array (
-		),
-	'keys' =>
-		array (
-			0 =>
-				array (
-					'encryption' => false,
-					'signing' => true,
-					'type' => 'X509Certificate',
-					'X509Certificate' => 'MIIC8DCCAdigAwIBAgIQOlWTNH1F+45DOydR7t8avjANBgkqhkiG9w0BAQsFADA0MTIwMAYDVQQDEylNaWNyb3NvZnQgQXp1cmUgRmVkZXJhdGVkIFNTTyBDZXJ0aWZpY2F0ZTAeFw0xODAxMjMxNDIwMDlaFw0yMTAxMjMxNDIwMDlaMDQxMjAwBgNVBAMTKU1pY3Jvc29mdCBBenVyZSBGZWRlcmF0ZWQgU1NPIENlcnRpZmljYXRlMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA0XzB6X54/Nn6J/t1nfxMp80zLgdgRUDnU2fkPjpr68NIAcoNOH41rv7peABaGo0IhoZqTTOfiZkdOLa4Aua6qLlCKq4Ct/WqyJplGxY3d9PVqqJoc16vlzbvETXw0OlGBdAji1EoX4vk3VCHqPAnikd984vIsReHitnE2zwSv7xS2pJ3UO2dhe33ByB+yfSu0umxxnqc3E5pmsNUanUPE/c1k3cEwCGtDMvF/hKirk2FPwYYxp8ANJH7tAws/TqAv1DHjG/MS+vA6ur1T9+VyLAP1R2W1HDWYFuJbdkxEkHLGUvKpfuBGCf/2ApPI28T11STK5Gd1zWXeHTIuHFuWQIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQC/GaPz1uoE85rDSauTBGbqPgm2DbQUVR9xhmCX3FIoH9lZNf5LNjd3maVrtfEFhvIOV1SpPsrpDgJiEKk0BMQQf+OSe7lARWzAy/O20SXKeFR5zE2qCpbRFpyxQQs1qZ5ykPsu7N/gM9hVA0OY+pdap9I3ueD2/0q2IXRAA8aGPVD89AJuzakcWoF/aLJ5C19f8AUqlpBm4EauMnmnJRcCf1LMxpZ3qFkMDRdnOzLuo8yNkQq4HH22bVThSf92CxmS3TQygclSpqsoAbuVcfnrXhIotlFKygdYeWaVIs3S8tS0LV0YxNOX6Mt8q7ZfGQksNq6mYuflLS/3xCX50KZM',
-				),
-		),
+
+/*
+ * Guest IdP. allows users to sign up and register. Great for testing!
+ */
+$metadata['https://openidp.feide.no'] = array(
+	'name' => array(
+		'en' => 'Feide OpenIdP - guest users',
+		'no' => 'Feide Gjestebrukere',
+	),
+	'description'          => 'Here you can login with your account on Feide RnD OpenID. If you do not already have an account on this identity provider, you can create a new one by following the create new account link and follow the instructions.',
+
+	'SingleSignOnService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'  => 'https://openidp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'      => 'c9ed4dfb07caf13fc21e0fec1572047eb8a7a4cb'
+);
+
+
+/*
+ * Feide, the norwegian federation. Test and production metadata.
+ */
+$metadata['https://idp-test.feide.no'] = array(
+	'name' => array(
+		'en' => 'Feide Test environment',
+		'no' => 'Feide testmiljø',
+	),
+	'description'                  => 'Feide test environment (idp-test.feide.no). Authenticate with your identity from a school or university in Norway.',
+
+	'SingleSignOnService'          => 'https://idp-test.feide.no/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'          => 'https://idp-test.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
+
+	'certFingerprint'              => 'fa982efdb69f26e8073c8f815a82a0c5885960a2',
+	'hint.cidr'                    => '158.38.0.0/16',
+);
+
+$metadata['https://idp.feide.no'] = array(
+	'name' => 'Feide',
+	'description' => array(
+		'en' => 'Authenticate with your identity from a school or university in Norway.',
+		'no' => 'Logg inn med din identitet fra skolen eller universitetet du er tilknyttet (i Norge).',
+	),
+	'SingleSignOnService'          => 'https://idp.feide.no/simplesaml/saml2/idp/SSOService.php',
+	'SingleLogoutService'          => 'https://idp.feide.no/simplesaml/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'              => 'cde69e332fa7dd0eaa99ee0ddf06916e8942ac53',
+	'hint.cidr'                    => '158.38.0.0/16',
+);
+
+
+
+/*
+ * Wayf, the danish federation metadata.
+ */
+$metadata['https://wayf.wayf.dk'] = array(
+	'name' => array(
+		'en' => 'DK-WAYF Production server',
+		'da' => 'DK-WAYF Produktionsmiljøet',
+	),
+	'description'          => 'Login with your identity from a danish school, university or library.',
+	'SingleSignOnService'  => 'https://wayf.wayf.dk/saml2/idp/SSOService.php',
+	'SingleLogoutService'  => 'https://wayf.wayf.dk/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'      => 'c215d7bf9d51c7805055239f66b957d9a72ff44b'
+);
+
+$metadata['https://betawayf.wayf.dk'] = array(
+	'name' => array(
+		'en' => 'DK-WAYF Quality Assurance',
+		'da' => 'DK-WAYF Quality Assurance miljøet',
+	),
+	'description'          => 'Login with your identity from a danish school, university or library.',
+	'SingleSignOnService'  => 'https://betawayf.wayf.dk/saml2/idp/SSOService.php',
+	'SingleLogoutService'  => 'https://betawayf.wayf.dk/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'      => 'c215d7bf9d51c7805055239f66b957d9a72ff44b'
+);
+
+$metadata['https://testidp.wayf.dk'] = array(
+	'name' => array(
+		'en' => 'DK-WAYF Test Server',
+		'da' => 'DK-WAYF Test Miljøet',
+	),
+	'description'          => 'Login with your identity from a danish school, university or library.',
+	'SingleSignOnService'  => 'https://testidp.wayf.dk/saml2/idp/SSOService.php',
+	'SingleLogoutService'  => 'https://testidp.wayf.dk/saml2/idp/SingleLogoutService.php',
+	'certFingerprint'      => '04b3b08bce004c27458b3e85b125273e67ef062b'
 );
