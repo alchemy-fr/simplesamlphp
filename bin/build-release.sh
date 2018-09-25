@@ -20,7 +20,7 @@ if [ -z "$REPO" ]; then
 fi
 
 TAG="v$VERSION"
-TARGET="simplesamlphp-$VERSION"
+TARGET="simplesamlphp-azure-$VERSION"
 
 cd /tmp
 
