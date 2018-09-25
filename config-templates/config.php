@@ -32,7 +32,7 @@ $config = array (
 	 *
 	 * SimpleSAMLphp will attempt to create this directory if it doesn't exist.
 	 */
-	'tempdir'               => '/tmp/simplesaml',
+	'tempdir'               => $_SERVER['HTTP_X_FORWARDED_PROTO'] . '://' . $_SERVER['SERVER_NAME'] . '/simplesaml/',
 	
 
 	/*
