@@ -57,10 +57,7 @@ cp -rv "$TARGET/config-templates/"* "$TARGET/config/"
 cp -rv "$TARGET/metadata-templates/"* "$TARGET/metadata/"
 cp -rv "$TARGET/cert-templates/"* "$TARGET/cert/"
 rm -rf "$TARGET/.git"
-rm "$TARGET"/{,modules}/.gitignore
-rm "$TARGET/.gitattributes"
-rm "$TARGET"/{cache,config,metadata,locales}/.gitkeep
-tar --owner 0 --group 0 -cvzf "$TARGET.tar.gz" "$TARGET"
+tar -cvzf "$TARGET.tar.gz" "$TARGET"
 # rm -rf "$TARGET"
 
 echo "Created: /tmp/$TARGET.tar.gz"
