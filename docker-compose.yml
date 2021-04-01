@@ -19,7 +19,7 @@ services:
       - 8282:80
     volumes:
     - ./config:/var/simplesamlphp/config:rw
-    - ./metadats:/var/simplesamlphp/metadata:rw
+    - ./metadata:/var/simplesamlphp/metadata:rw
     networks:
       - internal
 
@@ -31,6 +31,6 @@ services:
     restart: on-failure
     volumes:
     - ./config:/var/simplesamlphp/config:rw
-    - ./metadats:/var/simplesamlphp/metadata:rw
+    - ./metadata:/var/simplesamlphp/metadata:rw
     networks:
       - internal
