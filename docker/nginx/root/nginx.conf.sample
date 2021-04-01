@@ -1,0 +1,28 @@
+upstream backend {
+    server simplesamlphp:9000;
+}
+
+server {
+    listen 80;
+    index        index.php;
+    location  /simplesaml {
+        alias /var/simplesamlphp/www;
+        location ~ \.php(/|$) {
+            include fastcgi_params;
+            fastcgi_index index.php;
+            fastcgi_pass backend;
+            fastcgi_split_path_info ^(.+?\.php)(/.+)$;
+            fastcgi_param SCRIPT_FILENAME $request_filename;
+            fastcgi_param PATH_INFO       $fastcgi_path_info if_not_empty;
+            fastcgi_param HTTPS off;
+            proxy_set_header X-Forwarded-Port $server_port;
+            fastcgi_param PATH_INFO $fastcgi_path_info;
+        }
+    }
+    location ~ ^/(status|ping)$ {
+        fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+        fastcgi_index index.php;
+        include fastcgi_params;
+        fastcgi_pass backend;
+    }
+}

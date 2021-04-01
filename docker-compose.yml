@@ -1,0 +1,36 @@
+version: "3.4"
+
+networks:
+  internal:
+    ipam:
+      config:
+        - subnet: 172.38.0.0/16
+
+services:
+  simplesamlphp-gateway:
+    image: $DOCKER_REGISTRY/simplesamlphp-nginx:$DOCKER_TAG
+    build:
+      context: .
+      target: simplesamlphp-nginx
+    restart: on-failure
+    depends_on:
+    - simplesamlphp
+    ports:
+      - 8282:80
+    volumes:
+    - ./config:/var/simplesamlphp/config:rw
+    - ./metadats:/var/simplesamlphp/metadata:rw
+    networks:
+      - internal
+
+  simplesamlphp:
+    image: $DOCKER_REGISTRY/simplesamlphp-fpm:$DOCKER_TAG
+    build:
+      context: .
+      target: simplesamlphp
+    restart: on-failure
+    volumes:
+    - ./config:/var/simplesamlphp/config:rw
+    - ./metadats:/var/simplesamlphp/metadata:rw
+    networks:
+      - internal
