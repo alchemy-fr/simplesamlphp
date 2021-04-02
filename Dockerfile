@@ -43,7 +43,7 @@ RUN echo "deb http://deb.debian.org/debian stretch main non-free" > /etc/apt/sou
     && mkdir -p /home/app/.composer \
     && chown -R app: /home/app /var/simplesamlphp
 
-COPY . /var/simplesamlphp
+COPY  --chown=app  . /var/simplesamlphp
 WORKDIR /var/simplesamlphp
 ENTRYPOINT []
 CMD ["php-fpm", "-F"]
@@ -55,7 +55,7 @@ CMD ["php-fpm", "-F"]
 FROM nginx:1.17.8-alpine as simplesamlphp-nginx
 RUN adduser --uid 1000 --disabled-password app
 ADD ./docker/nginx/root /
-COPY . /var/simplesamlphp
+COPY  --chown=app  . /var/simplesamlphp
 
 ENTRYPOINT ["/entrypoint.sh"]
 

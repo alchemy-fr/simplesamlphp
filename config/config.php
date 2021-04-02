@@ -69,7 +69,7 @@ $config = array (
 	 * metadata listing and diagnostics pages.
 	 * You can also put a hash here; run "bin/pwgen.php" to generate one.
 	 */
-	'auth.adminpassword'		=> '123',
+	'auth.adminpassword'		=> 'passwd2021',
 	'admin.protectindexpage'	=> false,
 	'admin.protectmetadata'		=> false,
 
