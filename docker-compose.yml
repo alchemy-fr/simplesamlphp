@@ -31,8 +31,8 @@ services:
       target: simplesamlphp
     restart: on-failure
     volumes:
-    - ./config:/var/simplesamlphp/config:rw
-    - ./metadata:/var/simplesamlphp/metadata:rw
-    - ./metadata:/var/simplesamlphp/cert:rw
+    - $SIMPLESAML_CONFIG_DIR:/var/simplesamlphp/config:rw
+    - $SIMPLESAML_METADATA_DIR:/var/simplesamlphp/metadata:rw
+    - $SIMPLESAML_CERTIFICATE_DIR:/var/simplesamlphp/cert:rw
     networks:
       - internal
