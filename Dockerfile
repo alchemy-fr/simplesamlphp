@@ -43,6 +43,7 @@ RUN echo "deb http://deb.debian.org/debian stretch main non-free" > /etc/apt/sou
     && mkdir -p /home/app/.composer \
     && chown -R app: /home/app /var/simplesamlphp
 
+ADD ./docker/php/root /
 COPY  --chown=app  . /var/simplesamlphp
 WORKDIR /var/simplesamlphp
 ENTRYPOINT []
